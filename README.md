@@ -1,5 +1,7 @@
 # HabitTracker ✅
 
+Link video de demostracion: [****](https://drive.google.com/file/d/1cEgX8eZq9GWr_tR6Vqhlbng11a-KHa6N/view?usp=sharing)
+
 Aplicación web para administrar hábitos personales, desarrollada con **React + TypeScript** y **Redux Toolkit**.  
 Permite crear hábitos, marcarlos como completados y ver estadísticas de progreso.
 
