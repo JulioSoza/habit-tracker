@@ -1,73 +1,101 @@
-# React + TypeScript + Vite
+# HabitTracker ✅
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web para administrar hábitos personales, desarrollada con **React + TypeScript** y **Redux Toolkit**.  
+Permite crear hábitos, marcarlos como completados y ver estadísticas de progreso.
 
-Currently, two official plugins are available:
+Proyecto realizado como actividad de **Habit Tracker (Formik + Yup + Redux)** del curso de Desarrollo Web.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Tecnologías utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Vite + React + TypeScript  
+- Redux Toolkit y react-redux  
+- Formik para manejo de formularios  
+- Yup para validación  
+- Hooks personalizados de React (`useMemo`)  
+- Programación genérica con TypeScript  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ⚙️ Requisitos
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js 18+  
+- npm  
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🛠️ Instalación y ejecución
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Clonar el repositorio y entrar a la carpeta del proyecto:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+git clone <URL_DEL_REPO>
+cd habit-tracker
+Instalar dependencias:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+npm install
+Ejecutar el servidor de desarrollo:
+
+
+npm run dev
+Abrir el navegador en la URL que muestra Vite, normalmente:
+
+
+http://localhost:5173
+📁 Estructura principal del proyecto
+
+src/
+  components/
+    GenericList.tsx      # Lista genérica con TypeScript
+    HabitCard.tsx        # Presentación visual de un hábito
+    HabitForm.tsx        # Formulario para crear hábitos (Formik + Yup)
+    HabitList.tsx        # Lista de hábitos conectada a Redux
+  features/
+    habits/
+      habitsSlice.ts     # Slice de Redux Toolkit para hábitos
+  hooks/
+    reduxHooks.ts        # Hooks tipados de Redux (useAppDispatch, useAppSelector)
+    useHabitStats.ts     # Hook personalizado para estadísticas de hábitos
+  models/
+    Habit.ts             # Tipado del modelo Habit + función formatHabit
+  HabitDashboard.tsx     # Componente principal que integra todo
+  App.tsx                # Renderiza HabitDashboard
+  main.tsx               # Provider de Redux y punto de entrada de React
+  store.ts               # Configuración del store de Redux
+🧩 Funcionalidades principales
+1. Tipado del modelo hábito
+Archivo: src/models/Habit.ts
+
+interface Habit con los campos:
+
+id: string
+
+name: string
+
+category: "health" | "productivity" | "mindset" | "fitness" | "other"
+
+frequency: "daily" | "weekly" | "monthly"
+
+completed: boolean
+
+Función utilitaria:
+
+ts
+
+formatHabit(h: Habit): string;
+// Devuelve: "Hábito: {name} – Categoría: {category} – Frecuencia: {frequency}"
+2. Slice de Redux Toolkit para hábitos
+Archivo: src/features/habits/habitsSlice.ts
+
+Maneja una lista de Habit[] como estado.
+
+Acciones:
+
+addHabit → agrega un hábito.
+
+toggleCompleted → alterna el campo completed.
+
+removeHabit → elimina un hábito por id.
+
