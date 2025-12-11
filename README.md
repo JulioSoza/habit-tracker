@@ -1,27 +1,27 @@
-HabitTracker 
+# HabitTracker ✅
 
 Aplicación web para administrar hábitos personales, desarrollada con **React + TypeScript** y **Redux Toolkit**.  
 Permite crear hábitos, marcarlos como completados y ver estadísticas de progreso.
 
-Proyecto realizado como actividad de _Habit Tracker_ (Formik + Yup + Redux) del curso de Desarrollo Web.
+Proyecto realizado como actividad de **Habit Tracker (Formik + Yup + Redux)** del curso de Desarrollo Web.
 
 ---
 
 ## 🚀 Tecnologías utilizadas
 
-- **Vite + React + TypeScript**
-- **Redux Toolkit** y **react-redux**
-- **Formik** para manejo de formularios
-- **Yup** para validación
-- Hooks personalizados de React (`useMemo`)
-- Programación genérica con TypeScript
+- Vite + React + TypeScript  
+- Redux Toolkit y react-redux  
+- Formik para manejo de formularios  
+- Yup para validación  
+- Hooks personalizados de React (`useMemo`)  
+- Programación genérica con TypeScript  
 
 ---
 
 ## ⚙️ Requisitos
 
 - Node.js 18+  
-- npm
+- npm  
 
 ---
 
@@ -32,19 +32,24 @@ Clonar el repositorio y entrar a la carpeta del proyecto:
 ```bash
 git clone <URL_DEL_REPO>
 cd habit-tracker
+Instalar dependencias:
 
-## Instalar dependencias:
-
+bash
+Copiar código
 npm install
+Ejecutar el servidor de desarrollo:
 
-## Ejecutar el servidor de desarrollo:
-
+bash
+Copiar código
 npm run dev
+Abrir el navegador en la URL que muestra Vite, normalmente:
 
-""Abrir el navegador en la URL que muestra Vite, normalmente:
+text
+Copiar código
 http://localhost:5173
-
-## Estructura principal del proyecto
+📁 Estructura principal del proyecto
+text
+Copiar código
 src/
   components/
     GenericList.tsx      # Lista genérica con TypeScript
@@ -63,10 +68,8 @@ src/
   App.tsx                # Renderiza HabitDashboard
   main.tsx               # Provider de Redux y punto de entrada de React
   store.ts               # Configuración del store de Redux
-
-## Funcionalidades principales
+🧩 Funcionalidades principales
 1. Tipado del modelo hábito
-
 Archivo: src/models/Habit.ts
 
 interface Habit con los campos:
@@ -83,12 +86,11 @@ completed: boolean
 
 Función utilitaria:
 
+ts
+Copiar código
 formatHabit(h: Habit): string;
 // Devuelve: "Hábito: {name} – Categoría: {category} – Frecuencia: {frequency}"
-
-
 2. Slice de Redux Toolkit para hábitos
-
 Archivo: src/features/habits/habitsSlice.ts
 
 Maneja una lista de Habit[] como estado.
@@ -102,7 +104,6 @@ toggleCompleted → alterna el campo completed.
 removeHabit → elimina un hábito por id.
 
 3. Componente HabitCard
-
 Archivo: src/components/HabitCard.tsx
 
 Recibe un Habit y callbacks onToggle y onDelete.
@@ -124,7 +125,6 @@ Nombre tachado.
 Badge visual verde con texto “Completado”.
 
 4. Lista genérica con TypeScript – GenericList
-
 Archivo: src/components/GenericList.tsx
 
 Componente genérico GenericList<T> que recibe:
@@ -138,7 +138,6 @@ Renderiza un <ul> con cada elemento generado por renderItem.
 Se utiliza en HabitList para mostrar la lista de hábitos.
 
 5. Hook personalizado useHabitStats (useMemo)
-
 Archivo: src/hooks/useHabitStats.ts
 
 Recibe un arreglo de Habit[].
@@ -154,7 +153,6 @@ progress → porcentaje de avance (0–100).
 Se usa en HabitDashboard para mostrar estadísticas.
 
 6. Formulario con Formik para crear hábitos
-
 Archivo: src/components/HabitForm.tsx
 
 Usa Formik para controlar el formulario y Yup para validar.
@@ -176,12 +174,11 @@ Despacha addHabit al store de Redux.
 Resetea el formulario con resetForm().
 
 7. Componente de lista de hábitos con Redux – HabitList
-
 Archivo: src/components/HabitList.tsx
 
 Obtiene los hábitos desde Redux usando useAppSelector.
 
-Si no existen hábitos, muestra un mensaje:
+Si no existen hábitos, muestra el mensaje:
 
 “No existen hábitos aún. Crea uno con el formulario.”
 
@@ -194,7 +191,6 @@ onToggle → despacha toggleCompleted.
 onDelete → despacha removeHabit.
 
 8. Componente principal – HabitDashboard
-
 Archivo: src/HabitDashboard.tsx
 
 Integra:
@@ -214,21 +210,20 @@ Progreso en porcentaje.
 App.tsx se encarga de renderizar HabitDashboard y main.tsx envuelve la aplicación con el <Provider store={store}>.
 
 ✅ Cómo se cumple la rúbrica
-
 Tipado del modelo hábito
-src/models/Habit.ts contiene la interfaz Habit, tipos para categoría/frecuencia y la función formatHabit.
+src/models/Habit.ts contiene la interfaz Habit, los tipos de categoría/frecuencia y la función formatHabit.
 
 Slice de Redux Toolkit para hábitos
-src/features/habits/habitsSlice.ts maneja la lista de hábitos y las acciones addHabit, toggleCompleted, removeHabit.
+src/features/habits/habitsSlice.ts maneja la lista de hábitos y las acciones addHabit, toggleCompleted y removeHabit.
 
 Componente HabitCard
-src/components/HabitCard.tsx presenta la información de un hábito y permite marcarlo como completado o eliminarlo, con estilo diferente según completed.
+src/components/HabitCard.tsx presenta un hábito, permite marcarlo como completado o eliminarlo, y cambia su estilo según completed.
 
 Lista genérica con TypeScript – GenericList
-src/components/GenericList.tsx implementa una lista genérica <GenericList<T>> que recibe items y renderItem.
+src/components/GenericList.tsx implementa una lista genérica GenericList<T> que recibe items y renderItem.
 
-Hook personalizado useHabitStats (useMemo)
-src/hooks/useHabitStats.ts calcula total, completados y progreso.
+Hook personalizado useHabitStats
+src/hooks/useHabitStats.ts calcula total, completed y progress usando useMemo.
 
 Formulario con Formik para crear hábitos
 src/components/HabitForm.tsx usa Formik + Yup, valida longitud mínima de 3 caracteres y resetea el formulario al enviar.
@@ -238,3 +233,4 @@ src/components/HabitList.tsx usa Redux para obtener, listar y manipular los háb
 
 Componente principal HabitDashboard
 src/HabitDashboard.tsx integra formulario, lista y estadísticas, funcionando como panel principal de la aplicación.
+
